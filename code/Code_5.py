@@ -5,11 +5,12 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
+import config as config 
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-New = uic.loadUiType(r"C:\Users\dowon\OneDrive\PYTHON\pyqt\UI2.ui")[0] #두 번째창 ui
+New = uic.loadUiType(r"./ui/UI2.ui")[0] #두 번째창 ui
 class window_5(QDialog,QWidget,New):
     def __init__(self):
         super(window_5,self).__init__()
@@ -34,7 +35,7 @@ class window_5(QDialog,QWidget,New):
         self.label.clear()
         plt.rcParams['font.family'] = 'Malgun Gothic'
 
-        decoding_key = 'hScrax2XxNGjs1gcynNRpIldiQEi3nYDi7f4B+KV05FDXh/OBvy1/6VtD0KzgfkkVKMdBkeKwyVTitQMaopiPw=='
+        decoding_key = config.decoding_key5
         params ={'serviceKey' : decoding_key }
         json = requests.get('http://apis.data.go.kr/1790387/covid19CurrentStatusSevereSymptoms/covid19CurrentStatusSevereSymptomsJson', params=params).json()
         data = json['response']['result']
@@ -52,11 +53,10 @@ class window_5(QDialog,QWidget,New):
         df.index = ['value']
         df=df.transpose()
         df.index.name = "index"
-        df
         sns.relplot(x='index',y='value', data = df, kind='line', aspect=2)
-        plt.savefig('IMG5.png')
+        plt.savefig('./img/IMG5.png')
 
-        pixmap = QPixmap('IMG5.png')
+        pixmap = QPixmap('./img/IMG5.png')
         self.label.setPixmap(pixmap)
 
 

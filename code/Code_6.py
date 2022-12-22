@@ -5,11 +5,12 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
+import config as config 
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-New = uic.loadUiType(r"C:\Users\dowon\OneDrive\PYTHON\pyqt\UI1.ui")[0] #두 번째창 ui
+New = uic.loadUiType(r"./ui/UI1.ui")[0] #두 번째창 ui
 class window_6(QDialog,QWidget,New):
     def __init__(self):
         super(window_6,self).__init__()
@@ -33,7 +34,7 @@ class window_6(QDialog,QWidget,New):
         start_day = self.year.text() + self.month.text() + self.day.text()
         if start_day == "" :
             start_day = '20220720'
-        decoding_key = 'hScrax2XxNGjs1gcynNRpIldiQEi3nYDi7f4B+KV05FDXh/OBvy1/6VtD0KzgfkkVKMdBkeKwyVTitQMaopiPw=='
+        decoding_key = config.decoding_key6
         day = datetime.today().strftime('%Y%m%d') #오늘 날짜
         params ={'serviceKey' : decoding_key, 'pageNo' : '1', 'numOfRows' : '10', 'startCreateDt' : start_day , 'endCreateDt' : day }
         xml = requests.get('http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson', params=params)
@@ -51,8 +52,8 @@ class window_6(QDialog,QWidget,New):
 
         df3 = df3.drop(temp)
         sns.relplot(x='date',y='daily_natDefCnt', data = df3, kind='line', aspect=2)
-        plt.savefig('IMG6.png')
+        plt.savefig('./img/IMG6.png')
 
-        pixmap = QPixmap('IMG6.png')
+        pixmap = QPixmap('./img/IMG6.png')
         self.label.setPixmap(pixmap)
 

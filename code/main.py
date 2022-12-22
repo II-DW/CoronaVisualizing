@@ -13,7 +13,7 @@ from Code_13 import window_13
 from Code_14 import window_14
 from Code_15 import window_15
 
-form_class = uic.loadUiType(r"C:\Users\dowon\OneDrive\PYTHON\pyqt\pyqt.ui")[0]
+form_class = uic.loadUiType(r"./ui/pyqt.ui")[0]
 
   
 class MyWindow(QMainWindow, form_class):
@@ -30,7 +30,7 @@ class MyWindow(QMainWindow, form_class):
         self.push_14.clicked.connect(self.btn_clicked_14)
         self.push_15.clicked.connect(self.btn_clicked_15)
         self.push_32.clicked.connect(self.btn_clicked_32)
-        self.IMG_33 = QPixmap('IMG33.jpg')
+        self.IMG_33 = QPixmap('./img/IMG33.jpg')
 
     def btn_clicked_1(self):
         self.hide() #메인 윈도우 숨김

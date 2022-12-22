@@ -5,11 +5,12 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
+import config as config 
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-New = uic.loadUiType(r"C:\Users\dowon\OneDrive\PYTHON\pyqt\UI32.ui")[0] #두 번째창 ui
+New = uic.loadUiType(r"./ui/UI32.ui")[0] #두 번째창 ui
 class window_32(QDialog,QWidget,New):
     def __init__(self):
         super(window_32,self).__init__()
@@ -39,7 +40,7 @@ class window_32(QDialog,QWidget,New):
         if Nation_NM == "" :
             Nation_NM = "일본"
         
-        decoding_key = 'hScrax2XxNGjs1gcynNRpIldiQEi3nYDi7f4B+KV05FDXh/OBvy1/6VtD0KzgfkkVKMdBkeKwyVTitQMaopiPw=='
+        decoding_key = config.decoding_key32
         day = datetime.today().strftime('%Y%m%d') #오늘 날짜
         params ={'serviceKey' : decoding_key, 'pageNo' : '1', 'numOfRows' : '10', 'startCreateDt' : start_day , 'endCreateDt' : day }
         xml = requests.get('http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19NatInfStateJson', params=params)
@@ -59,8 +60,8 @@ class window_32(QDialog,QWidget,New):
 
         df_Nation2 = df_Nation2.drop(temp)
         sns.relplot(x='date',y='daily_natDefCnt', data = df_Nation2, kind='line', aspect=2)
-        plt.savefig('IMG32.png')
+        plt.savefig('./img/IMG32.png')
 
-        pixmap = QPixmap('IMG32.png')
+        pixmap = QPixmap('./img/IMG32.png')
         self.label.setPixmap(pixmap)
 

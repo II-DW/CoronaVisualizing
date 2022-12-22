@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 
-New = uic.loadUiType(r"C:\Users\dowon\OneDrive\PYTHON\pyqt\UI2.ui")[0] #두 번째창 ui
+New = uic.loadUiType(r"./ui/UI2.ui")[0] #두 번째창 ui
 class window_15(QDialog,QWidget,New):
     def __init__(self):
         super(window_15,self).__init__()
@@ -42,10 +42,16 @@ class window_15(QDialog,QWidget,New):
         df.set_index("tpcd", inplace=True)
         df=df.transpose()
         L = []
-        df['당일실적(A)']=df['당일실적(A)'].astype(float)
-        df['전일누적(B)']=df['전일누적(B)'].astype(float)
-        df['전체건수(C): (A)+(B)']=df['전체건수(C): (A)+(B)'].astype(float)
-        df['60세이상 접종률']=df['60세이상 접종률'].astype(float)
+        try :
+            df['당일실적(A)']=df['당일실적(A)'].astype(float)
+            df['전일누적(B)']=df['전일누적(B)'].astype(float)
+            df['전체건수(C): (A)+(B)']=df['전체건수(C): (A)+(B)'].astype(float)
+            df['60세이상 접종률']=df['60세이상 접종률'].astype(float)
+        except :
+            df['당일실적(A)']= 0
+            df['전일누적(B)']= 0
+            df['전체건수(C): (A)+(B)']=0
+            df['60세이상 접종률']=0
         for y in range (1, len(df.index)+1):
             L.append(str(y) + '차 접종')
         df['N'] = L
@@ -54,9 +60,9 @@ class window_15(QDialog,QWidget,New):
         sns.barplot(data= df, ax=ax[1], x="N", y="전일누적(B)")
         sns.barplot(data= df, ax=ax[2], x="N", y="전체건수(C): (A)+(B)")
         sns.barplot(data= df, ax=ax[3], x="N", y="60세이상 접종률")
-        plt.savefig('IMG15.png')
+        plt.savefig('./img/IMG15.png')
 
-        pixmap = QPixmap('IMG15.png')
+        pixmap = QPixmap('./img/IMG15.png')
         self.label.setPixmap(pixmap)
 
 
