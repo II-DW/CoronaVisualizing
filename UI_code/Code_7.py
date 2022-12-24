@@ -5,15 +5,15 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
-import config as config 
+import UI_code.config as config
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 New = uic.loadUiType(r"./ui/UI2.ui")[0] #두 번째창 ui
-class window_13(QDialog,QWidget,New):
+class window_7(QDialog,QWidget,New):
     def __init__(self):
-        super(window_13,self).__init__()
+        super(window_7,self).__init__()
         self.initUI()
         self.btn_13()
         self.show() # 두번째창 실행
@@ -43,9 +43,9 @@ class window_13(QDialog,QWidget,New):
         df = pd.DataFrame(a)
         sns.barplot(x = 'a', y = 'b',data = df,hue = "legendd")
         plt.legend()
-        plt.savefig('./img/IMG13.png')
+        plt.savefig('./img/IMG7.png')
 
-        pixmap = QPixmap('./img/IMG13.png')
+        pixmap = QPixmap('./img/IMG7.png')
         self.label.setPixmap(pixmap)
 
 

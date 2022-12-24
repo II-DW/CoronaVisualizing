@@ -5,15 +5,15 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
-import config as config 
+import UI_code.config as config
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
-New = uic.loadUiType(r"./ui/UI32.ui")[0] #두 번째창 ui
-class window_32(QDialog,QWidget,New):
+New = uic.loadUiType(r"./ui/UI4.ui")[0] #두 번째창 ui
+class window_10(QDialog,QWidget,New):
     def __init__(self):
-        super(window_32,self).__init__()
+        super(window_10,self).__init__()
         self.initUI()
         self.btn_33()
         self.show() # 두번째창 실행
@@ -60,8 +60,8 @@ class window_32(QDialog,QWidget,New):
 
         df_Nation2 = df_Nation2.drop(temp)
         sns.relplot(x='date',y='daily_natDefCnt', data = df_Nation2, kind='line', aspect=2)
-        plt.savefig('./img/IMG32.png')
+        plt.savefig('./img/IMG10.png')
 
-        pixmap = QPixmap('./img/IMG32.png')
+        pixmap = QPixmap('./img/IMG10.png')
         self.label.setPixmap(pixmap)
 

@@ -11,9 +11,9 @@ from PyQt5 import uic
 
 
 New = uic.loadUiType(r"./ui/UI2.ui")[0] #두 번째창 ui
-class window_15(QDialog,QWidget,New):
+class window_9(QDialog,QWidget,New):
     def __init__(self):
-        super(window_15,self).__init__()
+        super(window_9,self).__init__()
         self.initUI()
         self.btn_15()
         self.show() # 두번째창 실행
@@ -60,9 +60,9 @@ class window_15(QDialog,QWidget,New):
         sns.barplot(data= df, ax=ax[1], x="N", y="전일누적(B)")
         sns.barplot(data= df, ax=ax[2], x="N", y="전체건수(C): (A)+(B)")
         sns.barplot(data= df, ax=ax[3], x="N", y="60세이상 접종률")
-        plt.savefig('./img/IMG15.png')
+        plt.savefig('./img/IMG9.png')
 
-        pixmap = QPixmap('./img/IMG15.png')
+        pixmap = QPixmap('./img/IMG9.png')
         self.label.setPixmap(pixmap)
 
 

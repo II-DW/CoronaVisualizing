@@ -5,7 +5,7 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
-import config as config 
+import UI_code.config as config
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic

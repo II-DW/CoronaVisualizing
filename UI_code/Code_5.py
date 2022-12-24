@@ -5,24 +5,24 @@ from datetime import datetime
 import matplotlib.pyplot as plt
 import seaborn as sns
 from PyQt5.QtGui import QPixmap
-import config as config 
+import UI_code.config  as config
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 New = uic.loadUiType(r"./ui/UI2.ui")[0] #두 번째창 ui
-class window_14(QDialog,QWidget,New):
+class window_5(QDialog,QWidget,New):
     def __init__(self):
-        super(window_14,self).__init__()
+        super(window_5,self).__init__()
         self.initUI()
-        self.btn_14()
+        self.btn_5()
         self.show() # 두번째창 실행
 
 
     def initUI(self):
         self.setupUi(self)
         self.home.clicked.connect(self.Home)
-        self.reset.clicked.connect(self.btn_14)
+        self.reset.clicked.connect(self.btn_5)
         self.label = QLabel(self)
         #self.label.setGeometry(0,0,1000,500)
         self.label.move(-10,0)
@@ -30,14 +30,14 @@ class window_14(QDialog,QWidget,New):
     def Home(self):
         self.close() #창 닫기
 
-    def btn_14 (self) :
+    def btn_5 (self) :
         plt.figure(figsize=(11, 6))
         self.label.clear()
         plt.rcParams['font.family'] = 'Malgun Gothic'
 
-        decoding_key = config.decoding_key14
+        decoding_key = config.decoding_key5
         params ={'serviceKey' : decoding_key }
-        json = requests.get('http://apis.data.go.kr/1790387/covid19CurrentStatusHospitalizations/covid19CurrentStatusHospitalizationsJson', params=params).json()
+        json = requests.get('http://apis.data.go.kr/1790387/covid19CurrentStatusSevereSymptoms/covid19CurrentStatusSevereSymptomsJson', params=params).json()
         data = json['response']['result']
         L = ['cnt1','cnt2','cnt3','cnt4','cnt5','cnt6','cnt7']
         b=0
@@ -54,9 +54,9 @@ class window_14(QDialog,QWidget,New):
         df=df.transpose()
         df.index.name = "index"
         sns.relplot(x='index',y='value', data = df, kind='line', aspect=2)
-        plt.savefig('./img/IMG14.png')
+        plt.savefig('./img/IMG5.png')
 
-        pixmap = QPixmap('./img/IMG14.png')
+        pixmap = QPixmap('./img/IMG5.png')
         self.label.setPixmap(pixmap)
 
 

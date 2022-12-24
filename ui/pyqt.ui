@@ -69,28 +69,28 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QPushButton" name="push_13">
+     <widget class="QPushButton" name="push_7">
       <property name="text">
        <string>병상 현황</string>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QPushButton" name="push_14">
+     <widget class="QPushButton" name="push_8">
       <property name="text">
        <string>신규입원자 현황</string>
       </property>
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QPushButton" name="push_15">
+     <widget class="QPushButton" name="push_9">
       <property name="text">
        <string>예방접종 현황</string>
       </property>
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QPushButton" name="push_32">
+     <widget class="QPushButton" name="push_10">
       <property name="text">
        <string>해외 발생 현황</string>
       </property>
